@@ -28,8 +28,13 @@ router.post('/', (req, res) => {
         status: "active"
     }
 
+    if (!newMember.name || !newMember.email) {
+        return res.status(400).json({ msg: 'Please include a name and email'})
+    }
 
-    res.send(req.body);
+    members.push(newMember);
+    // res.json(members);
+    res.redirect("/");
 })
 
 // Delete Member
